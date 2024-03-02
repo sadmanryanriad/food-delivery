@@ -33,7 +33,7 @@ const menu = (
             : ""
         }
       >
-        Card <BsCart></BsCart>
+        Cart <BsCart></BsCart>
       </NavLink>
     </li>
   </>

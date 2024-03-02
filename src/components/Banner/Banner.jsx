@@ -1,6 +1,6 @@
 const Banner = () => {
   return (
-    <section className="bg-[url('assets/bannerbackground.png')] bg-center bg-no-repeat bg-cover h-screen md:h-[600px] w-full bg-yellow-50">
+    <section className="bg-[url('assets/bannerbackground.png')] bg-center bg-no-repeat bg-cover h-screen md:h-screen w-full bg-yellow-50">
       <div className="flex flex-col items-center justify-center h-full">
         <h1 className="text-center text-3xl md:text-4xl lg:text-5xl poppins font-semibold text-gray-700">
           Best food waiting for your belly
@@ -10,7 +10,7 @@ const Banner = () => {
           <input
             type="text"
             className=" rounded-full px-4 focus:outline-none w-full bg-transparent"
-            placeholder="Search here ......."
+            placeholder="Search here..."
           />
           <button className="text-sm bg-primary py-3 px-6 rounded-full text-white poppins ring-red-300 focus:ring-4 transition duration-300 hover:scale-105 transform">
             Search
