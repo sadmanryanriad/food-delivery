@@ -92,9 +92,9 @@ const Navbar = () => {
           </div>
           <Link to={"/"} className=" normal-case text-xl">
             <div className="flex gap-2 items-center font-semibold pl-3 uppercase">
-              <div className="bg-gradient-to-r from-yellow-400 to-red-500 hover:from-red-500 hover:to-yellow-500 flex gap-3 p-2 rounded-lg text-gray-100">
+              <div className="bg-gradient-to-r from-yellow-400 to-red-500 hover:from-red-500 hover:to-yellow-500 flex items-center gap-3 p-2 rounded-full text-gray-100 text-xs lg:text-xl">
                 Food Delivery{" "}
-                <span className="text-3xl">
+                <span className="text-2xl lg:text-3xl">
                   <MdDeliveryDining />
                 </span>
               </div>
@@ -135,7 +135,7 @@ const Navbar = () => {
             </div>
           ) : (
             <Link to="/login">
-              <button className="btn border-none text-white rounded-full bg-indigo-500 text-lg hover:scale-105">
+              <button className="btn h-10 border-none text-white rounded-full bg-indigo-500 hover:scale-105  text-sm lg:text-lg flex items-center">
                 Login
                 <span>
                   <FiLogIn></FiLogIn>

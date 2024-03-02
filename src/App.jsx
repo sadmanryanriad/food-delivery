@@ -1,11 +1,11 @@
 import Navbar from "./components/Navbar/Navbar";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <>
       <Navbar></Navbar>
-      <div className="h-screen"></div>
-      <div className="h-screen"></div>
+      <HomePage></HomePage>
     </>
   );
 }
