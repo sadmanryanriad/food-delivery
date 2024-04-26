@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-const AboutItem = ({ image, icon, title, description }) => {
+const AboutItem = ({ image, title, description }) => {
   return (
     <div className="bg-white transform transition duration-700 hover:scale-105 p-6 rounded-2xl hover:shadow-xl">
       {/* image  */}
@@ -14,7 +14,7 @@ const AboutItem = ({ image, icon, title, description }) => {
       <div className="flex mt-6 space-x-3 ">
         {/* icon  */}
         <div>
-          <img src={icon} alt={title} className="w-36" />
+          {/* <img src={icon} alt={title} className="w-36" /> */}
         </div>
         {/* description  */}
         <div className="flex flex-col space-y-3">
