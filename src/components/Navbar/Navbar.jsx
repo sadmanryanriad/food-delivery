@@ -1,10 +1,8 @@
-// import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FiHome, FiLogIn } from "react-icons/fi";
 import { BsCart } from "react-icons/bs";
 import { MdDeliveryDining } from "react-icons/md";
 import { useState } from "react";
-// import { AuthContext } from "../provider/AuthProvider";
 
 const menu = (
   <>
@@ -15,7 +13,7 @@ const menu = (
           isPending
             ? "pending"
             : isActive
-            ? "btn border-none text-white rounded-full bg-primary text-lg hover:scale-105"
+            ? "btn border-none text-white bg-primary text-lg hover:scale-105"
             : "text-gray-500"
         }
       >
@@ -29,7 +27,7 @@ const menu = (
           isPending
             ? "pending"
             : isActive
-            ? "btn border-none text-white rounded-full bg-primary text-lg hover:scale-105"
+            ? "btn border-none text-white bg-primary text-lg hover:scale-105"
             : "text-gray-500"
         }
       >
@@ -40,7 +38,6 @@ const menu = (
 );
 
 const Navbar = () => {
-  //   const { user, logout } = useContext(AuthContext);
   const user = false;
 
   const [changeHeader, setChangeHeader] = useState(false);
@@ -92,7 +89,7 @@ const Navbar = () => {
           </div>
           <Link to={"/"} className=" normal-case text-xl">
             <div className="flex gap-2 items-center font-semibold pl-3 uppercase">
-              <div className="bg-gradient-to-r from-yellowSauce to-red-500 hover:from-red-500 hover:to-yellowSauce flex items-center gap-3 p-2 rounded-full text-gray-100 text-xs lg:text-xl">
+              <div className="bg-gradient-to-r from-yellowSauce to-red-500 hover:from-red-500 hover:to-yellowSauce flex items-center gap-3 p-2 rounded-md text-gray-100 text-xs lg:text-xl">
                 Food Delivery{" "}
                 <span className="text-2xl lg:text-3xl">
                   <MdDeliveryDining />
@@ -135,7 +132,7 @@ const Navbar = () => {
             </div>
           ) : (
             <Link to="/login">
-              <button className="btn h-10 border-none text-white rounded-full bg-yellowSauce hover:scale-105  text-sm lg:text-lg flex items-center">
+              <button className="btn h-10 border-none text-white rounded-lg bg-yellowSauce hover:scale-105  text-sm lg:text-lg flex items-center">
                 Login
                 <span>
                   <FiLogIn></FiLogIn>
