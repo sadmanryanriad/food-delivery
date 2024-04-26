@@ -16,7 +16,7 @@ const menu = (
             ? "pending"
             : isActive
             ? "btn border-none text-white rounded-full bg-primary text-lg hover:scale-105"
-            : ""
+            : "text-gray-300  "
         }
       >
         Home <FiHome></FiHome>
@@ -30,7 +30,7 @@ const menu = (
             ? "pending"
             : isActive
             ? "btn border-none text-white rounded-full bg-primary text-lg hover:scale-105"
-            : ""
+            : "text-gray-300"
         }
       >
         Cart <BsCart></BsCart>
@@ -61,7 +61,7 @@ const Navbar = () => {
       className={
         changeHeader
           ? "bg-white fixed z-50 top-0 left-0 w-full shadow-md transition duration-500"
-          : "bg-transparent fixed z-50 top-0 left-0 w-full transition duration-500"
+          : "bg-transparent  z-50 top-0 left-0 w-full transition duration-500"
       }
     >
       <div className="navbar max-w-screen-xl mx-auto">
@@ -92,7 +92,7 @@ const Navbar = () => {
           </div>
           <Link to={"/"} className=" normal-case text-xl">
             <div className="flex gap-2 items-center font-semibold pl-3 uppercase">
-              <div className="bg-gradient-to-r from-yellow-400 to-red-500 hover:from-red-500 hover:to-yellow-500 flex items-center gap-3 p-2 rounded-full text-gray-100 text-xs lg:text-xl">
+              <div className="bg-gradient-to-r from-yellowSauce to-red-500 hover:from-red-500 hover:to-yellowSauce flex items-center gap-3 p-2 rounded-full text-gray-100 text-xs lg:text-xl">
                 Food Delivery{" "}
                 <span className="text-2xl lg:text-3xl">
                   <MdDeliveryDining />
@@ -135,7 +135,7 @@ const Navbar = () => {
             </div>
           ) : (
             <Link to="/login">
-              <button className="btn h-10 border-none text-white rounded-full bg-indigo-500 hover:scale-105  text-sm lg:text-lg flex items-center">
+              <button className="btn h-10 border-none text-white rounded-full bg-yellowSauce hover:scale-105  text-sm lg:text-lg flex items-center">
                 Login
                 <span>
                   <FiLogIn></FiLogIn>
