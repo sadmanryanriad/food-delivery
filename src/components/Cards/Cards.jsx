@@ -1,5 +1,5 @@
 import Card from './Card';
-import foodItems from './FoodItems';
+import foodItems from './FoodItemslist';
 
 const Cards = () => {
     return (

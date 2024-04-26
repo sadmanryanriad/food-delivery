@@ -5,7 +5,7 @@ const AboutItem = ({ image, icon, title, description }) => {
       {/* image  */}
       <div className="overflow-hidden rounded-2xl flex flex-grow">
         <img
-          className="transform transition duration-700 hover:scale-125"
+          className="w-full h-80 transform transition duration-700 hover:scale-125"
           src={image}
           alt={title}
         />

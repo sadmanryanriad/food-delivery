@@ -4,10 +4,10 @@ const Card = ({ foodItem }) => {
     const { name, description, price, image } = foodItem;
   return (
     <>
-      <div className="card card-compact w-96 bg-base-100 shadow-xl">
+      <div className="card card-compact w-96 bg-base-100 shadow-xl  transform transition duration-700 hover:scale-105 hover:shadow-2xl">
         <figure>
           <img
-          className="h-48 w-full object-cover"
+          className="h-48 w-full object-cover transform transition duration-700 hover:scale-125"
             src={image}
             alt={name}
           />
