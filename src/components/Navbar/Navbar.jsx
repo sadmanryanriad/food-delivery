@@ -16,7 +16,7 @@ const menu = (
             ? "pending"
             : isActive
             ? "btn border-none text-white rounded-full bg-primary text-lg hover:scale-105"
-            : "text-gray-300  "
+            : "text-gray-500"
         }
       >
         Home <FiHome></FiHome>
@@ -30,7 +30,7 @@ const menu = (
             ? "pending"
             : isActive
             ? "btn border-none text-white rounded-full bg-primary text-lg hover:scale-105"
-            : "text-gray-300"
+            : "text-gray-500"
         }
       >
         Cart <BsCart></BsCart>
