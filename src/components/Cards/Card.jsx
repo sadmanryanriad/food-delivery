@@ -1,13 +1,14 @@
 /* eslint-disable react/prop-types */
 const Card = ({ foodItem }) => {
     // eslint-disable-next-line no-unused-vars
-    const { name, description, price } = foodItem;
+    const { name, description, price, image } = foodItem;
   return (
     <>
       <div className="card card-compact w-96 bg-base-100 shadow-xl">
         <figure>
           <img
-            src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
+          className="h-48 w-full object-cover"
+            src={image}
             alt={name}
           />
         </figure>
