@@ -6,12 +6,15 @@ import AdminDashboard from "./src/pages/admin/AdminDashboard";
 import SignUp from "./src/pages/login/SignUp";
 import Login from "./src/pages/login/Login";
 import PrivateRoute from "./src/pages/privateRoute/PrivateRoute";
+import UsersList from "./src/pages/admin/UsersList";
+import AddProduct from "./src/pages/admin/AddProduct";
+import DashboardMessage from "./src/pages/admin/DashboardMessage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
-    errorElement: <div>ERror 404</div>,
+    errorElement: <div>Error 404</div>,
     children: [
       {
         path: "/",
@@ -32,8 +35,22 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '/admin',
-    element: <AdminDashboard></AdminDashboard>
+    path: 'admin',
+    element: <AdminDashboard></AdminDashboard>,
+    children: [
+      {
+        path:'',
+        element: <DashboardMessage></DashboardMessage>
+      }
+      ,{
+        path: 'users-list',
+        element: <UsersList></UsersList>
+      },
+      {
+        path: 'add-product',
+        element: <AddProduct></AddProduct>
+      },
+    ]
   }
 ]);
 
