@@ -34,6 +34,7 @@ async function run() {
       .db("food-delivery")
       .collection("usersCollection");
     const foodItems = client.db("food-delivery").collection("food-items");
+    const cartItems = client.db("food-delivery").collection("cart-items");
 
     //store user data
     app.post("/signup", async (req, res) => {
@@ -85,6 +86,18 @@ async function run() {
         res.json({ message: `there was an error: ${error}` });
       }
     });
+    //store cart data
+        //store user data
+        app.post("/cart", async (req, res) => {
+            try {
+              const newData = req.body;
+              const result = await cartItems.insertOne(newData);
+              res.send(result);
+            } catch (error) {
+              console.log(error);
+              res.status(500).json({ message: "Internal Server Error" });
+            }
+          });
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
