@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
+
+    const handleForm = e=>{
+        e.preventDefault();
+        const username = e.target.username.value;
+        const password = e.target.password.value;
+        console.log(username, password);
+    }
+
   return (
     <div className="bg-gray-100 flex justify-center items-center h-screen">
       {/* Left: Image (visible only on large screens) */}
@@ -17,7 +25,7 @@ const SignUp = () => {
         <h1 className="text-2xl md:text-5xl text-center font-semibold mb-4">
           Sign up
         </h1>
-        <form action="#" method="POST">
+        <form onSubmit={handleForm}>
           {/* Username Input */}
           <div className="mb-4">
             <label htmlFor="username" className="block text-gray-600">
@@ -47,7 +55,7 @@ const SignUp = () => {
           </div>
 
           {/* Remember Me Checkbox */}
-          <div className="mb-4 flex items-center">
+          {/* <div className="mb-4 flex items-center">
             <input
               type="checkbox"
               id="remember"
@@ -57,7 +65,7 @@ const SignUp = () => {
             <label htmlFor="remember" className="text-gray-600 ml-2">
               Remember Me
             </label>
-          </div>
+          </div> */}
 
           {/* Forgot Password Link */}
           <div className="mb-6 text-yellowSauce">
