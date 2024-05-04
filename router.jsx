@@ -5,6 +5,7 @@ import Cart from "./src/pages/Cart/Cart";
 import AdminDashboard from "./src/pages/admin/AdminDashboard";
 import SignUp from "./src/pages/login/SignUp";
 import Login from "./src/pages/login/Login";
+import PrivateRoute from "./src/pages/privateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <Cart></Cart>
+        element: <PrivateRoute><Cart></Cart></PrivateRoute>
       },
       {
         path: "/signup",
