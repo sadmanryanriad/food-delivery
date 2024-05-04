@@ -120,6 +120,19 @@ async function run() {
         res.status(500).json({ message: "Internal Server Error" });
       }
     });
+    // Clear all cart data
+    app.delete("/cartAll", async (req, res) => {
+      try {
+        const result = await cartItems.deleteMany({});
+        res.json({
+          message: "Cart cleared successfully",
+          deletedCount: result.deletedCount,
+        });
+      } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal Server Error" });
+      }
+    });
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });

@@ -15,8 +15,8 @@ const CartCard = ({item, refetch}) => {
               if (!data.acknowledged) {
                   Swal.fire({
                       icon: "error",
-                      title: "User already Exists",
-                      text: "You already have an account! Please login",
+                      title: "There was an error",
+                      text: "Contact your admin",
                     });
               } else {
                 refetch();
