@@ -7,7 +7,7 @@ const Banner = () => {
           Best food waiting for your belly
         </h1>
 
-        <div className="rounded-lg p-1 box-border mt-8 bg-gray-100 overflow-hidden ring-red-300 focus:ring-4 w-96 flex items-center">
+        {/* <div className="rounded-lg p-1 box-border mt-8 bg-gray-100 overflow-hidden ring-red-300 focus:ring-4 w-96 flex items-center">
           <input
             type="text"
             className=" rounded-full px-4 focus:outline-none w-full bg-transparent"
@@ -16,7 +16,7 @@ const Banner = () => {
           <button className="text-sm bg-primary py-3 px-6 rounded-lg text-gray-200 poppins ring-red-300 focus:ring-4 transition duration-300 hover:scale-105 transform">
             Search
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   );
