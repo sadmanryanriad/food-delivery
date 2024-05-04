@@ -25,14 +25,21 @@ const Login = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        login(data.email);
-        navigate("/");
-        // window.location.reload();
-        Swal.fire({
+        if (!data.email) {
+            Swal.fire({
+                icon: "error",
+                title: "Error!",
+                text: `${data.message}`,
+              });
+        } else {
+          login(data.email);
+          navigate("/");
+          Swal.fire({
             title: "Login successful!",
             text: "You have logged in successfully!",
-            icon: "success"
+            icon: "success",
           });
+        }
       })
       .catch((error) => {
         console.error("Error:", error);

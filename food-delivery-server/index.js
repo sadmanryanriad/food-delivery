@@ -62,7 +62,11 @@ async function run() {
         //find existing data
         const isUserExist = await foodDelivery.findOne({ email: data.email });
         if (isUserExist) {
-          res.json({ message: "User exists", email: isUserExist.email });
+            if(isUserExist.password === data.password){
+                res.json({ message: "User exists", email: isUserExist.email });
+            }else{
+                res.json({message: "Incorrect Credentials", email:false})
+            }
         } else {
           res.json({ message: "User does not exists", email: false });
         }
