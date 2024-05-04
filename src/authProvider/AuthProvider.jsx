@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 export const AuthContext = createContext(null);
 
@@ -18,11 +19,18 @@ const AuthProvider = ({ children }) => {
   const login = (email) => {
     // Set user state to the logged-in user's email
     setUser(email);
+    console.log("email set success");
   };
 
   const logout = () => {
     // Set user state to false when logging out
     setUser(false);
+    console.log("email set to false");
+    Swal.fire({
+      title: "Logout successful!",
+      text: "You have successfully logged out!",
+      icon: "success"
+    });
   };
 
   const authInfo = {

@@ -1,6 +1,11 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../authProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate("/");
   const handleForm = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -19,7 +24,22 @@ const SignUp = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log(data.email);
+        if (!data.email) {
+            Swal.fire({
+                icon: "error",
+                title: "User already Exists",
+                text: "You already have an account! Please login",
+              });
+        } else {
+          login(data.email);
+          navigate("/");
+          Swal.fire({
+            title: "Login successful!",
+            text: "You have logged in successfully!",
+            icon: "success",
+          });
+        }
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -46,7 +66,7 @@ const SignUp = () => {
           {/* email Input */}
           <div className="mb-4">
             <label htmlFor="email" className="block text-gray-600">
-            email
+              email
             </label>
             <input
               type="email"
@@ -96,7 +116,7 @@ const SignUp = () => {
             type="submit"
             className="bg-yellowSauce hover:bg-yellowSauce text-white font-semibold rounded-md py-2 px-4 w-full"
           >
-            Login
+            Sign up
           </button>
         </form>
 

@@ -43,11 +43,11 @@ async function run() {
           email: newData.email,
         });
         if (existingData) {
-          res.json({ message: "User account already exists" });
+          res.json({email:false, message: "User account already exists" });
         } else {
           //insert new data
           const result = await foodDelivery.insertOne(newData);
-          res.send(result);
+          res.json({email:newData.email, result});
         }
       } catch (error) {
         console.log(error);
