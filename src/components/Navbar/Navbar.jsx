@@ -2,7 +2,8 @@ import { Link, NavLink } from "react-router-dom";
 import { FiHome, FiLogIn } from "react-icons/fi";
 import { BsCart } from "react-icons/bs";
 import { MdDeliveryDining } from "react-icons/md";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../authProvider/AuthProvider";
 
 const menu = (
   <>
@@ -38,7 +39,8 @@ const menu = (
 );
 
 const Navbar = () => {
-  const user = false;
+  const { user, logout } = useContext(AuthContext);
+  console.log(user,);
 
   const [changeHeader, setChangeHeader] = useState(false);
 
@@ -104,26 +106,27 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          {user?.email ? (
+          <h5 className="text-yellowSauce text-xl">{user}</h5>
+          {user ? (
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
-                  <img src={user.photoURL} />
+                  <img src="profile.png" alt="U" />
                 </div>
               </label>
               <ul
                 tabIndex={0}
                 className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
               >
-                <li>
+                {/* <li>
                   <button className="btn btn-sm text-green-600 btn-ghost">
-                    {user.displayName}
+                    {user}
                   </button>
-                </li>
+                </li> */}
                 <li>
                   <button
                     className="btn-warning bg-green-400 hover:text-white text-lg"
-                    //   onClick={logout}
+                      onClick={logout}
                   >
                     Logout
                   </button>

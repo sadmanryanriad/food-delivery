@@ -1,6 +1,10 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../authProvider/AuthProvider";
 
 const Login = () => {
+  const { login } = useContext(AuthContext);
+    const navigate = useNavigate('/');
   const handleForm = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -20,6 +24,9 @@ const Login = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        login(data.email);
+        navigate("/");
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -46,7 +53,7 @@ const Login = () => {
           {/* Username Input */}
           <div className="mb-4">
             <label htmlFor="email" className="block text-gray-600">
-            email
+              email
             </label>
             <input
               type="email"
