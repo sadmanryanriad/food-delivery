@@ -7,6 +7,24 @@ const SignUp = () => {
         const username = e.target.username.value;
         const password = e.target.password.value;
         console.log(username, password);
+        const signUpData = {
+            email: username,
+            password: password
+        }
+        //send data to server
+        fetch('http://localhost:5000/signup',{
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(signUpData)
+        }).then(res=>res.json())            
+        .then(data=>{
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     }
 
   return (

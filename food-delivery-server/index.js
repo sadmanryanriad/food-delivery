@@ -30,10 +30,26 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
 
-    
+    const foodDelivery = client.db('food-delivery').collection('usersCollection')
+
+    app.post('/signup', async (req,res)=>{
+        try {
+            const newData = req.body;
+        //find existing data
+        const existingData = await foodDelivery.findOne({email:newData.email});
+        if(existingData){
+            res.json({ message: 'User account already exists' });
+        }else{
+            //insert new data
+            const result = await foodDelivery.insertOne(newData)
+            res.send(result);
+        }
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ message: 'Internal Server Error' });
+        }
+    })
 
 
 
