@@ -34,18 +34,24 @@ const CartCard = ({item, refetch}) => {
     
   return (
     <>
-      <div className="card card-side bg-base-100 shadow-xl mb-5 h-48 w-96 border">
+      <div className="card card-compact w-96 bg-base-100 shadow-xl  transform transition duration-700 hover:scale-105 hover:shadow-2xl">
         <figure>
           <img
+            className="h-48 w-full object-cover transform transition duration-700 hover:scale-125"
             src={item?.image}
-            alt="Movie"
+            alt={item?.name}
           />
         </figure>
         <div className="card-body">
           <h2 className="card-title">{item?.name}</h2>
-          <p>{item?.price}</p>
+          <h2 className="card-title text-yellowSauce">{item?.price}৳</h2>
           <div className="card-actions justify-end">
-            <button className="btn btn-error text-white" onClick={()=>handleDelete(item?._id)}>Delete</button>
+            <button
+              className="btn bg-error text-gray-200 text-lg"
+              onClick={()=>handleDelete(item?._id)}
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>

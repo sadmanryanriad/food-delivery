@@ -22,7 +22,8 @@ const Cart = () => {
   if (!isLoading) return <h1 className="text-2xl">Loading...</h1>;
   return (
     <>
-      <div className="w-full md:w-fit m-auto grid grid-cols-1 md:grid-cols-2 gap-5">
+    <h1 className="text-4xl font-bold text-center mb-12">Items in your cart</h1>
+      <div className="w-full md:w-fit m-auto grid grid-cols-1 md:grid-cols-2 gap-5 mb-40">
         {
           cartData.map(item=>{
             return <CartCard key={item._id} item={item} refetch={refetch}></CartCard>
