@@ -1,7 +1,7 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
+const { MongoClient, ServerApiVersion } = require("mongodb");
+const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -9,13 +9,13 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-app.get('/', (req,res)=>{
-    res.send("server is running...");
-})
+app.get("/", (req, res) => {
+  res.send("server is running...");
+});
 
-app.listen(port, ()=>{
-    console.log(`server running on port ${port}`);
-})
+app.listen(port, () => {
+  console.log(`server running on port ${port}`);
+});
 
 const uri = `mongodb+srv://${process.env.USER}:${process.env.PASS}@cluster0.ni8nft9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
@@ -25,40 +25,61 @@ const client = new MongoClient(uri, {
     version: ServerApiVersion.v1,
     strict: true,
     deprecationErrors: true,
-  }
+  },
 });
 
 async function run() {
   try {
+    const foodDelivery = client
+      .db("food-delivery")
+      .collection("usersCollection");
 
-    const foodDelivery = client.db('food-delivery').collection('usersCollection')
-
-    app.post('/signup', async (req,res)=>{
-        try {
-            const newData = req.body;
+    //store user data
+    app.post("/signup", async (req, res) => {
+      try {
+        const newData = req.body;
         //find existing data
-        const existingData = await foodDelivery.findOne({email:newData.email});
-        if(existingData){
-            res.json({ message: 'User account already exists' });
-        }else{
-            //insert new data
-            const result = await foodDelivery.insertOne(newData)
-            res.send(result);
+        const existingData = await foodDelivery.findOne({
+          email: newData.email,
+        });
+        if (existingData) {
+          res.json({ message: "User account already exists" });
+        } else {
+          //insert new data
+          const result = await foodDelivery.insertOne(newData);
+          res.send(result);
         }
-        } catch (error) {
-            console.log(error);
-            res.status(500).json({ message: 'Internal Server Error' });
+      } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal Server Error" });
+      }
+    });
+    //read user data for login
+    app.post("/login", async (req, res) => {
+      try {
+        const data = req.body;
+        console.log(data);
+        //find existing data
+        const isUserExist = await foodDelivery.findOne({ email: data.email });
+        if (isUserExist) {
+          res.json({ message: "User exists", user: isUserExist.email });
+        } else {
+          res.json({ message: "User does not exists", user: false });
         }
-    })
-
-
+      } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal Server Error" });
+      }
+    });
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+    console.log(
+      "Pinged your deployment. You successfully connected to MongoDB!"
+    );
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();
   }
 }
-run().catch(console.dir); 
+run().catch(console.dir);

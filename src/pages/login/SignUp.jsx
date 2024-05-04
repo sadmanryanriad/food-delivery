@@ -1,31 +1,30 @@
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
-
-    const handleForm = e=>{
-        e.preventDefault();
-        const username = e.target.username.value;
-        const password = e.target.password.value;
-        console.log(username, password);
-        const signUpData = {
-            email: username,
-            password: password
-        }
-        //send data to server
-        fetch('http://localhost:5000/signup',{
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(signUpData)
-        }).then(res=>res.json())            
-        .then(data=>{
-            console.log(data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
+  const handleForm = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const signUpData = {
+      email: email,
+      password: password,
+    };
+    //send data to server
+    fetch("http://localhost:5000/signup", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(signUpData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
 
   return (
     <div className="bg-gray-100 flex justify-center items-center h-screen">
@@ -44,15 +43,16 @@ const SignUp = () => {
           Sign up
         </h1>
         <form onSubmit={handleForm}>
-          {/* Username Input */}
+          {/* email Input */}
           <div className="mb-4">
-            <label htmlFor="username" className="block text-gray-600">
-              Username
+            <label htmlFor="email" className="block text-gray-600">
+            email
             </label>
             <input
-              type="text"
-              id="username"
-              name="username"
+              type="email"
+              required
+              id="email"
+              name="email"
               className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-yellowSauce"
               autoComplete="off"
             />
@@ -65,6 +65,7 @@ const SignUp = () => {
             </label>
             <input
               type="password"
+              required
               id="password"
               name="password"
               className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-yellowSauce"
