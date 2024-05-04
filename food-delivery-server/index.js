@@ -33,6 +33,7 @@ async function run() {
     const foodDelivery = client
       .db("food-delivery")
       .collection("usersCollection");
+    const foodItems = client.db("food-delivery").collection("food-items");
 
     //store user data
     app.post("/signup", async (req, res) => {
@@ -43,11 +44,11 @@ async function run() {
           email: newData.email,
         });
         if (existingData) {
-          res.json({email:false, message: "User account already exists" });
+          res.json({ email: false, message: "User account already exists" });
         } else {
           //insert new data
           const result = await foodDelivery.insertOne(newData);
-          res.json({email:newData.email, result});
+          res.json({ email: newData.email, result });
         }
       } catch (error) {
         console.log(error);
@@ -62,17 +63,26 @@ async function run() {
         //find existing data
         const isUserExist = await foodDelivery.findOne({ email: data.email });
         if (isUserExist) {
-            if(isUserExist.password === data.password){
-                res.json({ message: "User exists", email: isUserExist.email });
-            }else{
-                res.json({message: "Incorrect Credentials", email:false})
-            }
+          if (isUserExist.password === data.password) {
+            res.json({ message: "User exists", email: isUserExist.email });
+          } else {
+            res.json({ message: "Incorrect Credentials", email: false });
+          }
         } else {
           res.json({ message: "User does not exists", email: false });
         }
       } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Internal Server Error" });
+      }
+    });
+    //get food item list
+    app.get("/food-items", async (req, res) => {
+      try {
+        const result = await foodItems.find().toArray();
+        res.send(result);
+      } catch (error) {
+        res.json({ message: `there was an error: ${error}` });
       }
     });
 

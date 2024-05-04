@@ -40,7 +40,7 @@ const menu = (
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
-  console.log(user);
+  // console.log(user);
 
   const [changeHeader, setChangeHeader] = useState(false);
 

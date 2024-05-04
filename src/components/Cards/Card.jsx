@@ -2,6 +2,9 @@
 const Card = ({ foodItem }) => {
     // eslint-disable-next-line no-unused-vars
     const { name, description, price, image } = foodItem;
+    const handleButton = ()=>{
+
+    }
   return (
     <>
       <div className="card card-compact w-96 bg-base-100 shadow-xl  transform transition duration-700 hover:scale-105 hover:shadow-2xl">
@@ -17,7 +20,7 @@ const Card = ({ foodItem }) => {
           <h2 className="card-title text-yellowSauce">{price}৳</h2>
           <p>{description}</p>
           <div className="card-actions justify-end">
-            <button className="btn bg-yellowSauce text-gray-200 text-lg ">Add to Cart</button>
+            <button className="btn bg-yellowSauce text-gray-200 text-lg" onClick={handleButton}>Add to Cart</button>
           </div>
         </div>
       </div>
