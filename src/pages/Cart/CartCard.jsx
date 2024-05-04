@@ -1,16 +1,18 @@
-const CartCard = () => {
+/* eslint-disable react/prop-types */
+const CartCard = ({item}) => {
+    
   return (
     <>
-      <div className="card card-side bg-base-100 shadow-xl mb-5 h-44 border">
+      <div className="card card-side bg-base-100 shadow-xl mb-5 h-48 w-80 border">
         <figure>
           <img
-            src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+            src={item?.image}
             alt="Movie"
           />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">New movie is released!</h2>
-          <p>Click the button to watch on Jetflix app.</p>
+          <h2 className="card-title">{item?.name}</h2>
+          <p>{item?.price}</p>
           <div className="card-actions justify-end">
             <button className="btn btn-error text-white">Delete</button>
           </div>

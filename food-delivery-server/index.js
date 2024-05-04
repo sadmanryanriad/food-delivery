@@ -87,17 +87,27 @@ async function run() {
       }
     });
     //store cart data
-        //store user data
-        app.post("/cart", async (req, res) => {
-            try {
-              const newData = req.body;
-              const result = await cartItems.insertOne(newData);
-              res.send(result);
-            } catch (error) {
-              console.log(error);
-              res.status(500).json({ message: "Internal Server Error" });
-            }
-          });
+    app.post("/cart", async (req, res) => {
+      try {
+        const newData = req.body;
+        const result = await cartItems.insertOne(newData);
+        res.send(result);
+      } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal Server Error" });
+      }
+    });
+    //get cart data by email
+    app.get("/cart/:email", async (req, res) => {
+        try {
+          const email = req.params.email;
+          const result = await cartItems.find({user:email}).toArray();
+          res.json(result);
+        } catch (error) {
+          console.log(error);
+          res.status(500).json({ message: "Internal Server Error" });
+        }
+      });
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
