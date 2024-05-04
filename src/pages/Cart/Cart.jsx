@@ -17,21 +17,34 @@ const Cart = () => {
       .then((data) => {
         setCartData(data);
         setIsLoading(true)
-        console.log(data)
       });
-  }, []);
+  }, [user]);
   if (!isLoading) return <h1 className="text-2xl">Loading...</h1>;
   return (
     <>
       <div className="w-full md:w-fit m-auto grid grid-cols-1 md:grid-cols-2 gap-5">
         {
           cartData.map(item=>{
-            return <CartCard key={item._id} item={item}></CartCard>
+            return <CartCard key={item._id} item={item} refetch={refetch}></CartCard>
           })
         }
       </div>
     </>
   );
+
+  function refetch(){
+    fetch(`http://localhost:5000/cart/${user}`, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setCartData(data);
+        setIsLoading(true)
+      });
+  }
 };
 
 export default Cart;

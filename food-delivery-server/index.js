@@ -1,4 +1,4 @@
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
@@ -99,15 +99,27 @@ async function run() {
     });
     //get cart data by email
     app.get("/cart/:email", async (req, res) => {
-        try {
-          const email = req.params.email;
-          const result = await cartItems.find({user:email}).toArray();
-          res.json(result);
-        } catch (error) {
-          console.log(error);
-          res.status(500).json({ message: "Internal Server Error" });
-        }
-      });
+      try {
+        const email = req.params.email;
+        const result = await cartItems.find({ user: email }).toArray();
+        res.json(result);
+      } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal Server Error" });
+      }
+    });
+    //delete cart item
+    app.delete("/cart/:id", async (req, res) => {
+      try {
+        const id = req.params.id;
+        const query = { _id: new ObjectId(id) };
+        const result = await cartItems.deleteOne(query);
+        res.send(result);
+      } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal Server Error" });
+      }
+    });
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
