@@ -133,6 +133,19 @@ async function run() {
         res.status(500).json({ message: "Internal Server Error" });
       }
     });
+    // Fetch all users
+    app.get("/users", async (req, res) => {
+      try {
+        const usersCollection = client
+          .db("food-delivery")
+          .collection("usersCollection");
+        const users = await usersCollection.find().toArray();
+        res.json(users);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+      }
+    });
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
